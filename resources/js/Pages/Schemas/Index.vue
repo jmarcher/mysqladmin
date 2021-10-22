@@ -1,7 +1,12 @@
 <template>
-    <div>
-    <List v-slot="sidebar_elements"></List>
-    </div>
+    <Layout>
+        <template v-slot:sidebar_elements>
+            <List :schema="schema" :tables="tables"></List>
+        </template>
+        <template v-slot:default>
+            Test
+        </template>
+    </Layout>
 </template>
 <script>
 import Layout from '../Layout'
@@ -9,9 +14,7 @@ import List from "./Partials/List";
 import { Link } from '@inertiajs/inertia-vue3'
 
 export default {
-    // Using the shorthand
-    layout: Layout,
-    components: {Link, List},
+    components: {Link, List, Layout},
     props: {
         schema:String,
         tables: Array,

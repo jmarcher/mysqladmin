@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\SchemaHelpers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Inertia\Inertia;
 
 class SchemasController extends Controller
@@ -28,6 +29,11 @@ class SchemasController extends Controller
          return Inertia::render('Schemas/ViewData', [
              'schema' => $selectedSchema,
              'tables' => $helper->getTables($selectedSchema),
+             'data' => [
+                 'columns' => $helper->getTableColumns($selectedSchema, $request->query('table')),
+                 'data' => $helper
+                     ->getTableData($selectedSchema, $request->query('table'), $request->query('filters'))
+             ]
          ]);
     }
 }

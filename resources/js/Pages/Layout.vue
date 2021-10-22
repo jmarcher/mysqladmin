@@ -9,7 +9,6 @@
             </div>
             <nav class="sidebar-nav">
                 <ul>
-                    <slot name="sidebar_elements"/>
                     <li class="nav-item nav-item-has-children">
                         <a
                             href="#0"
@@ -27,12 +26,10 @@
                   />
                 </svg>
               </span>
-                            <span class="text">Dashboard</span>
+                            <span class="text">Tables</span>
                         </a>
-                        <ul id="ddmenu_1" class="collapse dropdown-nav">
-                            <li>
-                                <a href="index.html"> eCommerce </a>
-                            </li>
+                        <ul id="ddmenu_1" class="dropdown-nav">
+                            <slot name="sidebar_elements"/>
                         </ul>
                     </li>
                     <li class="nav-item nav-item-has-children">

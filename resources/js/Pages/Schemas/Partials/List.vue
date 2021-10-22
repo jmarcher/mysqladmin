@@ -1,6 +1,5 @@
 <template>
-
-                <li class="nav-item" v-for="table in tables">
+                <li v-for="table in tables">
                     <Link :href="`/schemas/${schema}/data/?table=${table}`" class="nav-link" aria-current="page">
                         <!--          <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>-->
                         {{ table }}
