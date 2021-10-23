@@ -1,5 +1,5 @@
 <template>
-    <Layout>
+    <Layout :schema="schema">
         <template v-slot:sidebar_elements>
             <List :schema="schema" :tables="tables"></List>
         </template>

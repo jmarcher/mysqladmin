@@ -1,16 +1,22 @@
 <template>
-  <div>
-    <H1>Index</H1>
-    <p>Hello , welcome to your first Inertia app!</p>
-  </div>
+    <div>
+        <H1>Databases</H1>
+        <ul>
+            <li v-for="database in databases">
+                <a :href="`/schemas/${database}`" v-text="database"></a>
+            </li>
+        </ul>
+    </div>
 </template>
 
 <script>
-  import Layout from './Layout'
+import Layout from './Layout'
 
-  export default {
+export default {
     // Using the shorthand
     layout: Layout,
-
-  }
+    props: {
+        databases: Array,
+    }
+}
 </script>

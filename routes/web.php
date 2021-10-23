@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', \App\Http\Controllers\IndexController::class);
 Route::get('/schemas/{selectedSchema?}', [\App\Http\Controllers\SchemasController::class, 'index']);
 Route::get('/schemas/{selectedSchema?}/data', [\App\Http\Controllers\SchemasController::class, 'viewData']);
+
+// Tables
+Route::get('/schemas/{selectedSchema?}/create_table', [\App\Http\Controllers\TablesController::class, 'create']);
+Route::post('/schemas/{selectedSchema?}/create_table', [\App\Http\Controllers\TablesController::class, 'store']);

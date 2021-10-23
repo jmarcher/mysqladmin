@@ -26,7 +26,7 @@
                   />
                 </svg>
               </span>
-                            <span class="text">Tables</span>
+                            <span class="text">Tables <span v-if="schema" @click="createTable" class="btn btn-primary me-3"><i class="lni lni-circle-plus"></i></span></span>
                         </a>
                         <ul id="ddmenu_1" class="dropdown-nav">
                             <slot name="sidebar_elements"/>
@@ -523,6 +523,7 @@
 import {Link} from '@inertiajs/inertia-vue3'
 
 export default {
+    props:['schema'],
     components: {
         Link,
     },
@@ -533,6 +534,9 @@ export default {
     },
 
     methods: {
+        createTable(){
+            this.$inertia.get(`/schemas/${this.schema}/create_table`);
+        },
         closeMenu() {
             this.isMenuOpen = false;
         },

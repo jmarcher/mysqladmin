@@ -2,7 +2,10 @@
 
 namespace App\Helpers;
 
+use Doctrine\DBAL\Schema\Column;
 use Doctrine\DBAL\Schema\ForeignKeyConstraint;
+use Doctrine\DBAL\Schema\Table;
+use Doctrine\DBAL\Types\StringType;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
@@ -53,5 +56,27 @@ class SchemaHelpers
             }
         }
         return $query->get()->toArray();
+    }
+
+    public function getDatabases():array
+    {
+        return DB::connection()->getDoctrineSchemaManager()->listDatabases();
+    }
+
+    public function createTable(string $schema, array $data):void
+    {
+        DB::setDatabaseName($schema);
+        $table = new Table($data['name'],$this->translateColumns($data['columns']));
+        DB::connection()->getDoctrineSchemaManager()->createTable($table);
+    }
+
+    private function translateColumns(array $columns):array
+    {
+        return array_map(function(array $column){
+            switch ($column['type']){
+                case 'string':
+                    return new Column($column['name'], new StringType());
+            }
+        }, $columns);
     }
 }
